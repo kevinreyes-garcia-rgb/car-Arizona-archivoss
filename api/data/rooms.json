@@ -1,0 +1,23 @@
+{
+    "D622T": {
+        "code": "D622T",
+        "hostId": "plr_ugizzgx",
+        "status": "racing",
+        "track": "drag",
+        "lapsMiles": "2-2",
+        "updatedAt": 1794599813,
+        "players": {
+            "plr_ugizzgx": {
+                "id": "plr_ugizzgx",
+                "name": "kevin",
+                "color": "#f8fafc",
+                "modelId": "skyline_gtr",
+                "x": 53.64117651624419380596009432338178157806396484375,
+                "z": 291.2805380071630452221143059432506561279296875,
+                "heading": 15.9683140027627334944781978265382349491119384765625,
+                "speed": 0,
+                "lap": 3
+            }
+        }
+    }
+}

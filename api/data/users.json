@@ -1,0 +1,90 @@
+{
+    "kavin@gmail.com": {
+        "id": "plr_ugizzgx",
+        "name": "kevin",
+        "email": "kavin@gmail.com",
+        "credits": 3900,
+        "activeCarUid": "car_xiqb3di",
+        "garage": [
+            {
+                "uid": "car_xiqb3di",
+                "modelId": "porsche_911",
+                "color": "#10b981",
+                "finish": "chrome",
+                "neon": "#00f0ff",
+                "spoiler": "gt",
+                "rimColor": "#38bdf8",
+                "engineLvl": 1,
+                "transLvl": 4,
+                "tiresLvl": 1,
+                "nitroLvl": 1
+            }
+        ]
+    },
+    "awdaw@awdadwa": {
+        "id": "plr_pbbhug2",
+        "name": "huevos",
+        "email": "awdaw@awdadwa",
+        "credits": 1300,
+        "activeCarUid": "car_rc67z3c",
+        "garage": [
+            {
+                "uid": "car_rc67z3c",
+                "modelId": "charger_rt",
+                "color": "#18181b",
+                "finish": "metallic",
+                "neon": "none",
+                "spoiler": "street",
+                "rimColor": "#e2e8f0",
+                "engineLvl": 3,
+                "transLvl": 3,
+                "tiresLvl": 3,
+                "nitroLvl": 2
+            }
+        ]
+    },
+    "kirito@gmail.com": {
+        "id": "plr_yvczddx",
+        "name": "Kirito",
+        "email": "kirito@gmail.com",
+        "credits": 25000,
+        "activeCarUid": "car_vz8k0h4",
+        "garage": [
+            {
+                "uid": "car_vz8k0h4",
+                "modelId": "skyline_gtr",
+                "color": "#0284c7",
+                "finish": "metallic",
+                "neon": "none",
+                "spoiler": "street",
+                "rimColor": "#e2e8f0",
+                "engineLvl": 1,
+                "transLvl": 1,
+                "tiresLvl": 1,
+                "nitroLvl": 1
+            }
+        ]
+    },
+    "kevin@gmail.com": {
+        "id": "plr_ictsonw",
+        "name": "kevin",
+        "email": "kevin@gmail.com",
+        "credits": 2600,
+        "activeCarUid": "car_19tv9ob",
+        "garage": [
+            {
+                "uid": "car_19tv9ob",
+                "modelId": "skyline_gtr",
+                "color": "#18181b",
+                "finish": "chrome",
+                "neon": "#39ff14",
+                "spoiler": "gt",
+                "rimColor": "#38bdf8",
+                "engineLvl": 5,
+                "transLvl": 5,
+                "tiresLvl": 1,
+                "nitroLvl": 4
+            }
+        ]
+    }
+}
