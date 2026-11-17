@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Horizon 3D Ultimate — +5,200 Autos Reales, Garaje Pro & Multijugador</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- 1. PANTALLA DE INICIO DE SESIÓN -->
+  <div id="login-screen" class="overlay-screen">
+    <div class="auth-card">
+      <div class="logo-badge">APEX HORIZON 3D • ULTIMATE EDITION</div>
+      <h1>Acceso de Piloto</h1>
+      <p>Inicia sesión con tu nombre y Gmail para guardar tu colección de autos, dinero, mejoras y correr en salas multijugador.</p>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="pilot-name">Nombre de Piloto</label>
+          <input type="text" id="pilot-name" placeholder="Ej. StreetKing" required minlength="3" maxlength="20" />
+        </div>
+        <div class="input-group">
+          <label for="pilot-email">Correo Gmail</label>
+          <input type="email" id="pilot-email" placeholder="piloto@gmail.com" required />
+        </div>
+        <div id="login-error" class="error-msg"></div>
+        <button type="submit" class="btn-primary full-width">ENTRAR AL MENÚ PRINCIPAL</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. MENÚ PRINCIPAL -->
+  <div id="main-menu-screen" class="overlay-screen hidden">
+    <div class="menu-hero-bg"></div>
+    <div class="menu-content">
+      <header class="top-bar">
+        <div class="brand">
+          <h2>APEX HORIZON 3D</h2>
+          <span class="subtitle">+5,200 Autos Reales • Velocidades Oficiales • Garaje Pro • Multijugador</span>
+        </div>
+        <div class="pilot-hud">
+          <div class="pilot-tag">
+            <span class="pilot-avatar">🏁</span>
+            <div>
+              <strong id="menu-pilot-name">Piloto</strong>
+              <small id="menu-pilot-email">piloto@gmail.com</small>
+            </div>
+          </div>
+          <div class="credits-tag">DINERO: <span id="menu-credits">$25,000</span></div>
+          <button id="btn-logout" class="btn-ghost">Salir</button>
+        </div>
+      </header>
+
+      <div class="hero-center">
+        <div class="active-car-pill">
+          AUTO EQUIPADO: <strong id="menu-active-car">Toyota Supra MK4</strong> • <span id="menu-car-gears">7 Marchas</span>
+        </div>
+        <h1>DOMINA EL ASFALTO SIN LÍMITES</h1>
+        <p>Más de 5,200 autos con velocidades oficiales reales de fábrica y al Full, garaje completo con Widebody y suspensión, y 5 mapas de carrera.</p>
+
+        <div class="main-nav-cards">
+          <button class="nav-tile primary-tile" id="nav-openworld">
+            <span class="tile-icon">🏙️</span>
+            <div>
+              <h3>MUNDO ABIERTO</h3>
+              <small>Ciudad infinita, gasolineras, zonas de carrera y GPS (M)</small>
+            </div>
+          </button>
+
+          <button class="nav-tile" id="nav-garage">
+            <span class="tile-icon">🔧</span>
+            <div>
+              <h3>ENTRAR AL GARAJE 3D</h3>
+              <small>Widebody, Suspensión, Turbo, 10 Marchas y Pintura</small>
+            </div>
+          </button>
+
+          <button class="nav-tile" id="nav-store">
+            <span class="tile-icon">🏪</span>
+            <div>
+              <h3>CONCESIONARIO (+5,200)</h3>
+              <small>Toyota, Nissan, Ferrari, Bugatti, Koenigsegg y más</small>
+            </div>
+          </button>
+
+          <button class="nav-tile" id="nav-quickrace">
+            <span class="tile-icon">🏁</span>
+            <div>
+              <h3>CARRERAS RÁPIDAS</h3>
+              <small>5 Mapas: GP, Drag, Óvalo 500km/h, Touge y Técnico</small>
+            </div>
+          </button>
+
+          <button class="nav-tile" id="nav-multiplayer">
+            <span class="tile-icon">🌐</span>
+            <div>
+              <h3>MULTIJUGADOR</h3>
+              <small>Crea o únete a salas con código de 5 letras</small>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUBPANEL CARRERAS RÁPIDAS -->
+      <div id="menu-subpanel-race" class="subpanel-modal hidden">
+        <div class="subpanel-card">
+          <div class="subpanel-head">
+            <h3>🏁 Configurar Carrera Rápida</h3>
+            <button class="btn-close-sub" data-close="menu-subpanel-race">✕</button>
+          </div>
+          <div class="cfg-row">
+            <label>Selecciona el Mapa / Circuito:</label>
+            <select id="qr-track">
+              <option value="circuit">Circuito Gran Premio (Rectas + Curvas Rápidas)</option>
+              <option value="oval">Óvalo Velocidad Extrema (Ideal para +450 KM/H)</option>
+              <option value="touge">Montaña Touge Japón (Curvas Drift enlazadas)</option>
+              <option value="drag">Autopista Drag (Recta Pura + Retorno)</option>
+              <option value="technical">Circuito Técnico (Chicanes Cerradas)</option>
+            </select>
+          </div>
+          <div class="cfg-two-col mt-10">
+            <div class="cfg-row">
+              <label>Número de Vueltas:</label>
+              <select id="qr-laps">
+                <option value="1">1 Vuelta</option>
+                <option value="2" selected>2 Vueltas</option>
+                <option value="3">3 Vueltas</option>
+                <option value="5">5 Vueltas</option>
+              </select>
+            </div>
+            <div class="cfg-row">
+              <label>Distancia (Millas):</label>
+              <select id="qr-miles">
+                <option value="1">1 Milla</option>
+                <option value="2" selected>2 Millas</option>
+                <option value="4">4 Millas</option>
+                <option value="6">6 Millas</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-primary full-width mt-14" id="btn-launch-quickrace">¡COMENZAR CARRERA!</button>
+        </div>
+      </div>
+
+      <!-- SUBPANEL MULTIJUGADOR -->
+      <div id="menu-subpanel-mp" class="subpanel-modal hidden">
+        <div class="subpanel-card">
+          <div class="subpanel-head">
+            <h3>🌐 Salas Multijugador Online</h3>
+            <button class="btn-close-sub" data-close="menu-subpanel-mp">✕</button>
+          </div>
+          <div id="mp-lobby-controls">
+            <p class="muted-text">Crea una sala privada y pasa el código a tus amigos, o ingresa un código existente.</p>
+            <div class="mp-actions mt-10">
+              <button class="btn-secondary" id="btn-create-room">+ Crear Sala</button>
+              <div class="join-box">
+                <input type="text" id="input-room-code" placeholder="CÓDIGO (Ej. K9P2M)" maxlength="6" />
+                <button class="btn-primary" id="btn-join-room">Unirse</button>
+              </div>
+            </div>
+            <div id="mp-status-msg" class="mp-msg"></div>
+          </div>
+
+          <div id="mp-room-active" class="room-box hidden">
+            <div class="room-code-banner">
+              <span>CÓDIGO DE SALA:</span>
+              <strong id="display-room-code">-----</strong>
+              <button id="btn-copy-code" class="btn-mini">Copiar</button>
+            </div>
+            <div class="cfg-two-col mt-8">
+              <div class="cfg-row">
+                <label>Mapa / Pista:</label>
+                <select id="mp-track">
+                  <option value="circuit">Circuito Gran Premio</option>
+                  <option value="oval">Óvalo Velocidad Extrema</option>
+                  <option value="touge">Montaña Touge Japón</option>
+                  <option value="drag">Autopista Drag</option>
+                  <option value="technical">Circuito Técnico</option>
+                </select>
+              </div>
+              <div class="cfg-row">
+                <label>Vueltas / Millas:</label>
+                <select id="mp-laps-miles">
+                  <option value="2-2">2 Vueltas (2 mi)</option>
+                  <option value="3-4">3 Vueltas (4 mi)</option>
+                  <option value="1-1">1 Vuelta (1 mi)</option>
+                </select>
+              </div>
+            </div>
+            <div class="players-list-title">Pilotos Conectados (<span id="room-player-count">1</span>/6):</div>
+            <ul id="room-players-list" class="players-list"></ul>
+            <div class="room-footer-btns">
+              <button class="btn-primary" id="btn-start-mp-race">INICIAR CARRERA EN SALA</button>
+              <button class="btn-ghost" id="btn-leave-room">Salir de Sala</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. VISTA DEL GARAJE 3D EN VIVO CON MODIFICACIONES PRO -->
+  <div id="garage-screen" class="overlay-screen hidden">
+    <div class="garage-top">
+      <button class="btn-ghost" id="btn-garage-back">← Volver al Menú</button>
+      <div class="garage-title">
+        <h2>GARAJE PERSONALIZADO 3D</h2>
+        <span id="garage-car-title">Toyota Supra MK4</span> • <strong id="garage-gear-info" class="cyan-text">7 Marchas • Vel. Máx: 285 KM/H</strong>
+      </div>
+      <div class="credits-tag">DINERO: <span id="garage-credits">$25,000</span></div>
+    </div>
+
+    <div class="garage-workspace">
+      <div class="glass-panel garage-left">
+        <div class="section-label">MIS VEHÍCULOS (<span id="owned-cars-count">1</span>)</div>
+        <div id="owned-cars-list" class="owned-list"></div>
+
+        <div class="sell-box">
+          <div class="sell-info">
+            <span>Valor de venta actual:</span>
+            <strong id="garage-sell-price">$0</strong>
+          </div>
+          <button id="btn-sell-car" class="btn-danger full-width">VENDER ESTE VEHÍCULO</button>
+          <small id="sell-warning" class="sell-note">Debes conservar al menos 1 auto en tu garaje.</small>
+        </div>
+      </div>
+
+      <div class="glass-panel garage-right">
+        <div class="garage-tabs">
+          <button class="g-tab active" data-gtab="paint">Pintura y Neón</button>
+          <button class="g-tab" data-gtab="aero">Carrocería y Stance</button>
+          <button class="g-tab" data-gtab="tuning">Motor y Potencia</button>
+        </div>
+
+        <div class="g-pane active" id="gtab-paint">
+          <label class="field-lbl">Color de Carrocería</label>
+          <div class="swatches" id="garage-swatches"></div>
+
+          <div class="inline-setting">
+            <span>Acabado</span>
+            <div class="seg-btns" id="garage-finish">
+              <button class="seg active" data-val="metallic">Metálico</button>
+              <button class="seg" data-val="matte">Mate</button>
+              <button class="seg" data-val="chrome">Cromo</button>
+            </div>
+          </div>
+
+          <div class="inline-setting">
+            <span>Neón Inferior</span>
+            <div class="seg-btns" id="garage-neon">
+              <button class="seg active" data-val="none">Off</button>
+              <button class="seg" data-val="#00f0ff">Cian</button>
+              <button class="seg" data-val="#ff007f">Rosa</button>
+              <button class="seg" data-val="#39ff14">Verde</button>
+              <button class="seg" data-val="#f59e0b">Ámbar</button>
+            </div>
+          </div>
+
+          <div class="inline-setting">
+            <span>Llamas de Escape</span>
+            <div class="seg-btns" id="garage-exhaust">
+              <button class="seg active" data-val="#38bdf8">Azul</button>
+              <button class="seg" data-val="#f97316">Fuego</button>
+              <button class="seg" data-val="#a855f7">Violeta</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="g-pane" id="gtab-aero">
+          <div class="inline-setting">
+            <span>Kit Widebody</span>
+            <div class="seg-btns" id="garage-widebody">
+              <button class="seg active" data-val="false">Original</button>
+              <button class="seg" data-val="true">Ensanchado Pro</button>
+            </div>
+          </div>
+
+          <div class="inline-setting">
+            <span>Alerón Trasero</span>
+            <div class="seg-btns" id="garage-spoiler">
+              <button class="seg" data-val="none">Sin Alerón</button>
+              <button class="seg active" data-val="street">Original / Street</button>
+              <button class="seg" data-val="gt">GT Carbono</button>
+            </div>
+          </div>
+
+          <div class="inline-setting">
+            <span>Altura Suspensión</span>
+            <div class="seg-btns" id="garage-stance">
+              <button class="seg active" data-val="stock">Normal</button>
+              <button class="seg" data-val="sport">Deportiva</button>
+              <button class="seg" data-val="slammed">Slammed (Baja)</button>
+            </div>
+          </div>
+
+          <div class="inline-setting">
+            <span>Rines Deportivos</span>
+            <div class="seg-btns" id="garage-rim">
+              <button class="seg active" data-val="#e2e8f0">Plata</button>
+              <button class="seg" data-val="#18181b">Negro</button>
+              <button class="seg" data-val="#fbbf24">Oro</button>
+              <button class="seg" data-val="#38bdf8">Azul</button>
+              <button class="seg" data-val="#ef4444">Rojo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="g-pane" id="gtab-tuning">
+          <div class="upgrade-row">
+            <div>
+              <strong>Motor Forjado <span id="upg-engine-lvl" class="lvl-tag">Nv. 1/5</span></strong>
+              <small>Desbloquea la velocidad máxima oficial del modelo</small>
+            </div>
+            <button class="btn-upgrade" id="btn-upg-engine">$1,500</button>
+          </div>
+          <div class="upgrade-row">
+            <div>
+              <strong>Twin-Turbo / Supercharger <span id="upg-turbo-lvl" class="lvl-tag">Nv. 1/5</span></strong>
+              <small>Aceleración explosiva y respuesta de válvula</small>
+            </div>
+            <button class="btn-upgrade" id="btn-upg-turbo">$1,600</button>
+          </div>
+          <div class="upgrade-row">
+            <div>
+              <strong>Transmisión Racing <span id="upg-trans-lvl" class="lvl-tag">Nv. 1/5</span></strong>
+              <small>Al máximo (Nv. 5) desbloquea 10 MARCHAS</small>
+            </div>
+            <button class="btn-upgrade" id="btn-upg-trans">$1,800</button>
+          </div>
+          <div class="upgrade-row">
+            <div>
+              <strong>Neumáticos & Frenos <span id="upg-tires-lvl" class="lvl-tag">Nv. 1/5</span></strong>
+              <small>Mayor agarre en curva y frenado con ESPACIO</small>
+            </div>
+            <button class="btn-upgrade" id="btn-upg-tires">$1,200</button>
+          </div>
+          <div class="upgrade-row">
+            <div>
+              <strong>Tanque de Nitrógeno <span id="upg-nitro-lvl" class="lvl-tag">Nv. 1/5</span></strong>
+              <small>Mayor capacidad y empuje del Nitro (SHIFT)</small>
+            </div>
+            <button class="btn-upgrade" id="btn-upg-nitro">$1,400</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="garage-bottom-hint">🖱️ Arrastra en la pantalla para girar el auto 360° • Al llegar al Full alcanzarás la velocidad real oficial del vehículo</div>
+  </div>
+
+  <!-- 4. TIENDA CON FILTRO DE MARCAS Y BUSCADOR PARA +5,200 AUTOS -->
+  <div id="store-screen" class="overlay-screen hidden">
+    <div class="store-container">
+      <div class="store-header">
+        <button class="btn-ghost" id="btn-store-back">← Volver al Menú</button>
+        <div>
+          <h2>CONCESIONARIO OFICIAL (+5,200 AUTOS)</h2>
+          <p>Filtra por marca o busca cualquier modelo. Cada auto respeta su velocidad real de fábrica y al Full.</p>
+        </div>
+        <div class="credits-tag">TU DINERO: <span id="store-credits">$25,000</span></div>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
+        <select id="store-brand-filter" style="padding:10px 14px; border-radius:10px; background:#0f172a; color:#f8fafc; border:1px solid #334155;">
+          <option value="Todas">Todas las Marcas</option>
+        </select>
+        <input type="text" id="store-search-input" placeholder="Buscar auto (Ej. Supra, Skyline, Chiron, Ferrari...)" style="flex:1; min-width:220px; padding:10px 14px; border-radius:10px; background:#0f172a; color:#f8fafc; border:1px solid #334155;" />
+      </div>
+
+      <div id="store-grid" class="store-grid"></div>
+    </div>
+  </div>
+
+  <!-- 5. HUD DURANTE EL JUEGO -->
+  <div id="game-hud" class="hidden">
+    <div class="hud-header">
+      <div class="race-info-box">
+        <span id="hud-mode-badge" class="badge-mode">MUNDO ABIERTO INFINITO</span>
+        <div id="hud-race-progress" class="race-stats">Exploración Libre</div>
+        <div id="hud-gps-status" class="gps-status hidden">📍 Destino GPS activo • Sigue la línea azul</div>
+        <div id="hud-room-indicator" class="room-mini-tag hidden">Sala: <b id="hud-active-room"></b></div>
+      </div>
+
+      <div class="controls-legend">
+        <span><b>W/S</b> Acelerar/Reversa</span>
+        <span><b>A/D</b> Girar</span>
+        <span><b>E</b> Subir Marcha</span>
+        <span><b>Q</b> Bajar Marcha</span>
+        <span><b>SHIFT</b> Nitrógeno</span>
+        <span><b>ESPACIO</b> Freno + Luz Roja</span>
+        <span><b>M</b> Mapa GPS</span>
+        <span><b>TAB</b> 1ª Persona</span>
+        <span><b>G</b> Faros</span>
+        <span><b>H</b> Claxon</span>
+        <span><b>ESC</b> Menú</span>
+      </div>
+    </div>
+
+    <div id="interaction-prompt" class="interaction-prompt hidden">
+      Presiona <b>F</b> para recargar Gasolina y Nitrógeno ($150)
+    </div>
+
+    <div id="toast-banner" class="toast-banner"></div>
+
+    <!-- MAPA INTERACTIVO GPS -->
+    <div id="map-modal" class="map-modal hidden">
+      <div class="map-card">
+        <div class="map-top">
+          <div>
+            <h3>🗺️ MAPA GPS DEL MUNDO ABIERTO</h3>
+            <small>Haz clic en cualquier punto del mapa para trazar una ruta GPS en el suelo</small>
+          </div>
+          <div class="map-actions">
+            <button class="btn-secondary" id="btn-clear-gps">Borrar Ruta</button>
+            <button class="btn-ghost" id="btn-close-map">Cerrar [M]</button>
+          </div>
+        </div>
+        <canvas id="gps-canvas" width="680" height="440"></canvas>
+        <div class="map-legend">
+          <span><i class="dot player"></i> Tu Auto</span>
+          <span><i class="dot gas"></i> Gasolineras (Fuel + Nitro)</span>
+          <span><i class="dot race"></i> Zonas de Carrera Rápida</span>
+          <span><i class="dot dest"></i> Destino GPS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL DE RESULTADOS DE CARRERA -->
+    <div id="race-finish-modal" class="finish-modal hidden">
+      <div class="finish-card">
+        <h2>🏆 ¡CARRERA COMPLETADA!</h2>
+        <p id="finish-subtitle">Has cruzado la meta</p>
+        <button class="btn-primary full-width mt-14" id="btn-finish-to-menu">VOLVER AL MENÚ PRINCIPAL</button>
+      </div>
+    </div>
+
+    <!-- TACÓMETRO -->
+    <div class="tachometer">
+      <div class="tacho-top-row">
+        <div class="gear-indicator">
+          <span class="gear-lbl">MARCHA</span>
+          <strong id="hud-gear">1</strong>
+          <small id="hud-max-gear">/ 7</small>
+        </div>
+        <div class="speed-block">
+          <div class="speed-readout" id="hud-speed">0</div>
+          <div class="speed-label">KM/H • <span id="hud-miles-driven">0.00</span> MI</div>
+        </div>
+      </div>
+
+      <div class="bars-container">
+        <div class="bar-row">
+          <span>⛽ GAS</span>
+          <div class="bar-track"><div id="bar-fuel" class="bar-fill fuel-fill" style="width:100%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span>🔥 NITRO</span>
+          <div class="bar-track"><div id="bar-nitro" class="bar-fill nitro-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+
+      <div class="tacho-footer">
+        <span class="shift-hint">[E] Subir • [Q] Bajar</span>
+        <div class="lamps">
+          <span id="lamp-lights" class="lamp">FAROS</span>
+          <span id="lamp-brake" class="lamp">FRENO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE.JS Y MÓDULOS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/multiplayer.js"></script>
+  <script src="js/tracks.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
