@@ -1,0 +1,27 @@
+===================================================================
+APEX HORIZON 3D ULTIMATE — GUÍA DE SUBIDA A INFINITYFREE
+===================================================================
+
+CARPETA LISTA PARA SUBIR A /htdocs EN INFINITYFREE:
+- index.html          -> Login, Menú Principal con portada visual, Garaje 3D, Tienda y HUD
+- .htaccess           -> Configuración Apache para InfinityFree
+- css/style.css       -> Estilos completos
+- js/catalog.js       -> Catálogo de 8 autos legendarios y originales con precios y reventa
+- js/auth.js          -> Inicio de sesión (Nombre + Gmail), colección de autos y ventas
+- js/tracks.js        -> Pistas de carrera detalladas (rectas, curvas, vallas, gradas y millas)
+- js/multiplayer.js   -> Salas multijugador por código de 5 letras
+- js/game.js          -> Mundo abierto infinito, gasolineras, zonas de carrera, GPS (M), marchas E/Q (7/10), peatones y tráfico detallado
+- api/rooms.php       -> Servidor PHP para salas online y guardado de perfiles
+
+CONTROLES DEL JUEGO:
+- W / S o Flechas     : Acelerar / Reversa
+- A / D               : Girar
+- E / Q               : Subir marcha / Bajar marcha (7 marchas base, 10 marchas al mejorar Transmisión a Nv. 5)
+- SHIFT               : Activar Nitrógeno (con llamas azules en el escape)
+- ESPACIO             : Freno + Faros traseros rojos brillantes
+- M                   : Abrir Mapa GPS del mundo abierto y marcar ruta azul
+- F                   : Recargar Gasolina y Nitrógeno en gasolineras o iniciar carrera en zonas amarillas
+- TAB                 : Cambiar a vista de Primera Persona (cabina interior)
+- G                   : Encender / Apagar faros y cambiar Día/Noche
+- H                   : Claxon
+- ESC                 : Volver al Menú Principal
